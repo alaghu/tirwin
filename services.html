@@ -1,0 +1,434 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+
+
+		  <link rel="stylesheet" type="text/css" media="screen" href="Scripts/style.css">
+	        <link rel="stylesheet" type="text/css" media="screen" href="Scripts/menu.css">
+			<script type="text/javascript" src="Scripts/jquery_003.js"></script>
+	        <script type="text/javascript" src="Scripts/jquery.js"></script>
+	        <script type="text/javascript" src="Scripts/idtabs.js"></script>
+	        <script type="text/javascript" src="Scripts/jquery_002.js"></script>
+	        <script type="text/javascript" src="Scripts/general.js"></script>
+			<title>Welcome to Tirwin Management Services Pvt Ltd - About Us</title>
+			<script language="javascript" type="text/javascript">
+			if (!String.prototype.endsWith) {
+                String.prototype.endsWith = function(suffix) {
+                var startPos = this.length - suffix.length;
+                if (startPos < 0) {
+                    return false;
+                }
+                return (this.lastIndexOf(suffix, startPos) == startPos);
+                };
+             }
+
+			function Disable() {
+			var frm = document.forms[0];
+			
+			    var tc = document.getElementById("acceptTandC");
+                
+                if(!tc.checked)
+                    {
+                        frm.submit.disabled=true;
+                    }
+                else {
+                        //tc.disabled=true;
+                        if(document.forms[0].file.value != "")
+                        {
+                            frm.submit.disabled=false;                            
+                        }
+                     }
+            /*
+            if(frm.file.value != "")
+                {
+                    frm.submit.disabled=false;                            
+                }
+            */
+            }
+            function setBusyState()
+            {
+                var div = document.getElementById("uploadprogress");
+                div.innerHTML="";
+                var img = document.createElement("IMG");
+                img.setAttribute("src","Images/icon_inprogress.gif");
+                div.appendChild(img);
+                document.forms[0].submit.disabled=true;
+            }
+            function removeBusyState(result)
+            {
+                var div = document.getElementById("uploadprogress");
+                div.innerHTML="";
+                if(result==1)
+                { //if result is success or 1
+                    var img = document.createElement("IMG");
+                    img.setAttribute("src","Images/correct.jpg");
+                    div.appendChild(img);
+                    document.forms[0].submit.disabled=true;
+                }
+                else
+                { //if result is fail or 0
+                    div.innerHTML = "Upload failed...try again.";
+                    document.forms[0].submit.disabled=false;
+                }
+            }
+            function uploadValidations()
+            {
+                if(document.forms[0].file.value == "")
+                {
+                    alert("File name can not be blank. Select a file to upload");
+                    return false;
+                }
+                else if(!document.forms[0].file.value.endsWith(".doc") && !document.forms[0].file.value.endsWith(".rtf") && !document.forms[0].file.value.endsWith(".txt") && !document.forms[0].file.value.endsWith(".pdf"))
+                    {
+                        alert("Only .doc, .txt, .rtf and .pdf file types are allowed");
+                        return false;
+                    }
+                    else
+                    {
+                        setBusyState();
+                        return true;
+                    }   
+                    
+            } //end uploadValidations() function
+            
+            function popUp(URL) 
+            {
+                day = new Date();
+                id = day.getTime();
+                eval("page" + id + " = window.open(URL, '" + id + "', 'toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=1,width=500,height=450,left = 400,top = 150');");
+            }
+			</script>
+			<style type="text/css">
+            #dhtmltooltip
+            {
+                position: absolute;
+                /*width: 150px;*/
+                border: 2px solid black;
+                /*padding: 2px;*/
+                background-color: lightyellow;
+                visibility: hidden;
+                z-index: 15000;
+                /*Remove below line to remove shadow. Below line should always appear last within this CSS*/
+                /*filter: progid:DXImageTransform.Microsoft.Shadow(color=gray,direction=135);*/
+            }
+            </style>
+			<script language="javascript" type="text/javascript">
+			    function zoomBook(bookname)
+			    {
+			        //below code works only with Firefox. div.innerHTML method will not accept IMG tag. IMG tag is ignored.
+			        //var imageDiv = document.getElementById("bookimg");
+			        //imageDiv.innerHTML = "<a href=\"javascript:void(0)\" title=\"\"><img src=\"Images/"+bookname+".jpg /></a>";
+			        //alert(imageDiv.innerHTML);
+			        
+			        //IE bug fix -- Tested and works on both IE7 and FF
+			        
+			        // for initially there will be text node and then an A node. 
+			        // To handle things consistently, clear child tree inside div and forget about removeChild methods :-)
+			        document.getElementById("bookimg").innerHTML=""; 
+			        //Create child elements and append IMG to A and, A to DIV
+			        var aTag = document.createElement('A');			        
+			        var imgTag = document.createElement('IMG');
+			        imgTag.setAttribute('src', "Images/"+bookname+".jpg");
+			        aTag.appendChild(imgTag);
+			        document.getElementById("bookimg").appendChild(aTag);			        
+			    }
+			    new Image().src="Images/ahm2011_300_350.jpg";
+			    new Image().src="Images/air2011_300_350.jpg";
+			    new Image().src="Images/dgr2011_300_350.jpg";
+			    new Image().src="Images/ISSG2010_300_350.jpg";
+			    new Image().src="Images/lar2011_300_350.jpg";
+			    new Image().src="Images/pcr2010_300_350.jpg";
+			    new Image().src="Images/uld2010_300_350.jpg";	    
+			</script>
+</head>
+
+<body>
+<div id="dhtmltooltip"></div>
+
+<script type="text/javascript">
+
+/***********************************************
+* Cool DHTML tooltip script- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+***********************************************/
+
+var offsetxpoint=-60 //Customize x offset of tooltip
+var offsetypoint=20 //Customize y offset of tooltip
+var ie=document.all
+var ns6=document.getElementById && !document.all
+var enabletip=false
+if (ie||ns6)
+var tipobj=document.all? document.all["dhtmltooltip"] : document.getElementById? document.getElementById("dhtmltooltip") : ""
+
+function ietruebody(){
+return (document.compatMode && document.compatMode!="BackCompat")? document.documentElement : document.body
+}
+
+function ddrivetip(thetext, thecolor, thewidth){
+if (ns6||ie){
+if (typeof thewidth!="undefined") tipobj.style.width=thewidth+"px"
+if (typeof thecolor!="undefined" && thecolor!="") tipobj.style.backgroundColor=thecolor
+tipobj.innerHTML=thetext
+enabletip=true
+return false
+}
+}
+
+function positiontip(e){
+if (enabletip){
+var curX=(ns6)?e.pageX : event.clientX+ietruebody().scrollLeft;
+var curY=(ns6)?e.pageY : event.clientY+ietruebody().scrollTop;
+//Find out how close the mouse is to the corner of the window
+var rightedge=ie&&!window.opera? ietruebody().clientWidth-event.clientX-offsetxpoint : window.innerWidth-e.clientX-offsetxpoint-20
+var bottomedge=ie&&!window.opera? ietruebody().clientHeight-event.clientY-offsetypoint : window.innerHeight-e.clientY-offsetypoint-20
+
+var leftedge=(offsetxpoint<0)? offsetxpoint*(-1) : -1000
+
+//if the horizontal distance isn't enough to accomodate the width of the context menu
+if (rightedge<tipobj.offsetWidth)
+//move the horizontal position of the menu to the left by it's width
+tipobj.style.left=ie? ietruebody().scrollLeft+event.clientX-tipobj.offsetWidth+"px" : window.pageXOffset+e.clientX-tipobj.offsetWidth+"px"
+else if (curX<leftedge)
+tipobj.style.left="5px"
+else
+//position the horizontal position of the menu where the mouse is positioned
+tipobj.style.left=curX+offsetxpoint+"px"
+
+//same concept with the vertical position
+if (bottomedge<tipobj.offsetHeight)
+tipobj.style.top=ie? ietruebody().scrollTop+event.clientY-tipobj.offsetHeight-offsetypoint+"px" : window.pageYOffset+e.clientY-tipobj.offsetHeight-offsetypoint+"px"
+else
+tipobj.style.top=curY+offsetypoint+"px"
+tipobj.style.visibility="visible"
+}
+}
+
+function hideddrivetip(){
+if (ns6||ie){
+enabletip=false
+tipobj.style.visibility="hidden"
+tipobj.style.left="-1000px"
+tipobj.style.backgroundColor=''
+tipobj.style.width=''
+}
+}
+
+document.onmousemove=positiontip
+
+</script>
+<!--
+	  <div id="menu_top">
+	  <h2>
+<a href="index.html">Home</a>
+<a href="contact.html">Contact Us</a>
+</h2>
+          </div>-->
+          <div id="header">
+          <div class="toplogo">
+          <a href="index.html" title="Tirwin home">&nbsp;</a>
+          </div>
+          <div class="header_right"></div>
+          
+  <div id="nav"> 
+    <ul class="nav">
+      <li > <a href="index.html">Home<span>Welcome!</span></a> </li>
+      <li > <a href="about.html">About Us<span>Our Company</span></a> 
+      </li>
+      <li class="current"> <a href="services.html">Services<span>We Offer</span></a> </li>
+      <!--      <li> <a href="consulting.html">Consulting<span>What we do</span></a> </li>
+      <li> <a href="#">Resourcing<span>Coming Soon</span></a> </li>-->
+      <li> <a href="#">News Room<span>Coming Soon</span></a> </li>
+      <li> <a href="contact.html">Contact US<span>Our Offices</span></a> </li>
+    </ul>
+  </div>
+          </div>
+
+	<div id="pages">
+	<div class="pages_inner">
+		<h1 class="title">Services<span>&nbsp;We Offer</span></h1>
+    <div style="margin: 0pt auto; width: 750px; position: relative;" >
+      <div class="feat_but"> 
+        <table>
+             <tr>
+                <td style="width:0px;"><a href="#initialtext" style=" visibility:hidden;">Home</a></td>
+                <td><a href="#consulting">Consulting</a> </td>
+                <td><a href="training.html">Training</a> </td>                
+                <td><a href="#resourcing">Resourcing</a>
+                <td><a  href="#iata">Products&amp;Publications</a> </td>                
+            </tr>
+        </table>
+      </div>
+      <div id="initialtext">
+      <a id="A2"></a> 
+        <div class="images"> <a href="javascript:void(0)" title=""> <img src="Images/services_main.jpg" alt="consulting"> 
+          </a> </div>
+        <div class="style13">
+        <h3>SERVICES</h3>
+          <p align="justify">
+             <b>TIRWIN</b> specializes in airline and transport management services.<br /><br />
+While our Innovation Team provides Consultanty Services, our Knowledge Sharing Team guarantees industry standard and customized Training in aviation and transport management.<br /><br /> 
+<b>TIRWIN</b> provides a platform for great employment opportunities in aviation and freight forwarding business as its Resourcing activities.<br /><br /> 
+<b>TIRWIN</b> arranges to supply IATA and other aviation/freight forwarding related Publications.<br /><br />           
+           </p>
+           <br /><br /><br /><br />
+      </div>
+      <div class="clear br"></div><br />
+      </div>
+      <div id="consulting" style="display: none;"> <a id="install"></a> 
+        <div class="images"> <a href="javascript:void(0)" title=""> <img src="Images/consulting.jpg" alt="consulting"> 
+          </a> </div>
+        <div class="style13"> 
+          <h3>CONSULTING</h3>
+          <p align="justify"> <b>TIRWIN</b> believes in innovative methods to 
+            perform better. TIRWIN provides end-to-end customized solutions through<br>
+            <br>
+          <ul>
+            <li><img src="Images/ico_punto.gif">&nbsp;Process Mapping</li>
+            <li><img src="Images/ico_punto.gif">&nbsp;Benchmarking</li>
+            <li><img src="Images/ico_punto.gif">&nbsp;SOP Documentation</li>
+            <li><img src="Images/ico_punto.gif">&nbsp;Process Implementation</li>
+            <li><img src="Images/ico_punto.gif">&nbsp;Troubleshooting</li>
+            <li><img src="Images/ico_punto.gif">&nbsp;Auditing - Performance, 
+              Regulations Compliance, Safety Oversight</li>
+            <li><img src="Images/ico_punto.gif">&nbsp;Review/Evaluation</li>
+          </ul></p>
+          <br>
+          <br>
+          <br>
+          </div>
+        <div class="clear br"></div>
+      </div>
+      
+      <div id="resourcing" style="display: none;"> <a id="A1"></a> 
+        <div class="images"> <a href="javascript:void(0)" title=""> <img src="Images/employment.jpg" alt="Employment Opportunities"> 
+          </a> </div>
+        <div class="style13"> 
+          <h3>RESOURCING</h3>
+          <p align="justify"> <b>TIRWIN</b> as part of its <b>‘Commitment to Community Program’</b> provides this platform where you can submit your resume for your career growth. This window provided by <b>TIRWIN</b> is exclusively for employment opportunities in Indian Aviation, Freight Forwarding (air and sea) and related business only.  The registration is absolutely free. <br>
+            <br/>
+            <a style="font-weight:bold;" href="javascript:popUp('TandC.html');" onMouseover="JavaScript:window.status='Terms and Conditions'; return true;"  onMouseout="JavaScript:window.status=''; return true;">Click Here</a> to Read Terms & Conditions.
+            <br /><br />
+            <table><tr><td><input type="checkbox" name="acceptTandC" id="acceptTandC" onclick="javascript:Disable();" /></td><td valign="middle"><label for="acceptTandC">&nbsp;I accept terms and conditions.</label></td></tr></table>          
+          </p>
+		  <form name="uplaodform" action="upload_request_handler.php" method="post" enctype="multipart/form-data" target="uploadresult" onsubmit="javascript: return uploadValidations();">
+		    Operational Area :
+		    <select name="mailid">
+		    <optgroup label="AVIATION">
+		    <!--<option value="krishna@mannerweb.com">Flight Operations</option>-->
+		    <option value="getmyjobfltops@mannerweb.com">Flight Operations</option>
+		    <option value="getmyjobpss@mannerweb.com">Passenger Services</option>
+		    <option value="getmyjobcgo@mannerweb.com">Cargo Operations</option>
+		    <option value="getmyjobramp@mannerweb.com">Ramp Operations</option>
+		    <option value="getmyjobsmaviation@mannerweb.com">Sales and Marketing</option>
+		    <option value="getmyjobmaint@mannerweb.com">Maintenance</option>
+		    </optgroup>
+		    <optgroup label="FREIGHT FORWARDING (AIR)">		    
+		    <!--<option value="krishna.sivapuram@gmail.com">Sales and Marketing</option>-->
+		    <option value="getmyjobsmaff@mannerweb.com">Sales and Marketing</option>
+		    <option value="getmyjobopsaff@mannerweb.com">Operations</option>
+		    <option value="getmyjobcha@mannerweb.com">CHA</option>		    
+		    </optgroup>
+		    <optgroup label="FREIGHT FORWARDING (SEA)">
+		    <option value="getmyjobsmsff@mannerweb.com">Sales and Marketing</option>
+		    <option value="getmyjobopssff@mannerweb.com">Operations</option>
+		    <option value="getmyjobcha@mannerweb.com">CHA</option>		    
+		    </optgroup>
+		    </select>
+            <br />Select resume for upload:
+            <table><tr><td><input type="file" name="file" onchange="javascript:Disable();"></td><td> <div id="uploadprogress"></div></td></tr></table><br/>
+            <input type="submit" name="submit" value="submit" id="submit" disabled="disabled">
+          </form>
+          <iframe src="#" id="uploadresult" name="uploadresult" style="width:0;height:0;border:0px solid #fff;"></iframe>
+          <!--<iframe src="#" id="uploadresult" name="uploadresult" style="width:200;height:200;border:0px solid #fff;"></iframe>-->
+          </div>
+        <div class="clear br"></div>
+      </div>
+      
+      <div id="iata" style="display: none;"> 
+      <!--<a id="A2"></a> 
+        <div class="images" id="bookimg"> <a href="javascript:void(0)" title=""> <img src="Images/click-here.jpg" alt="Employment Opportunities"> 
+          </a> </div>
+          -->
+        <!--<div class="style13"> -->
+        <div>
+          <small><h3 style="font-size:1.3em;letter-spacing:1px;font-family:verdana;margin:0 0 .5em;color:#E02320; border-bottom:1px solid #ccc;font-weight:none;">IATA PUBLICATIONS</h3></small>
+          <table width="100%"><tr><td valign="top">
+          <p align="justify"><b>TIRWIN</b> is IATA’s Channel Partner to distribute IATA Publications in India. For your enquiries regarding the publicaitons, please click on the image of the book</p>
+          </td>
+          <td><img src="Images/iatalogo.gif" style="margin:3px 3px 3px 8px;"  title="IATA publications" /></td>
+          </tr>
+          </table>
+          <div style="height:4px;"></div>
+          <br />        
+          <p align="justify"> 
+          <!--<table border="1px" cellpadding="1px" style="border-color:rgb(224, 35, 32); border-style:solid" cellspacing="2px">-->
+          <table border="1px" cellpadding="1px" style="border-color:rgb(0, 0, 0); border-style:solid" cellspacing="2px">
+          <tr >
+            <td class="smallimg"  align="center" valign="middle">
+				<a href="mailto:publications@tirwin.in?CC=govind@tirwin.in&subject=Regarding%20Dangerous%20Goods%20Regulations">
+					<img class="bimg" src="Images/dgr2011_140_200.jpg" onMouseover="ddrivetip('<img src=\'Images/dgr2011_300_350.jpg\' />');"; onMouseout="hideddrivetip();">
+				</a>
+            </td><td class="smallimg"  align="center" valign="middle">
+				<a href="mailto:publications@tirwin.in?CC=govind@tirwin.in&subject=Regarding%20Goods%20Regulations%20Quick%20Reference">
+					<img class="bimg" src="Images/uld2010_140_200.jpg" onMouseover="ddrivetip('<img src=\'Images/uld2010_300_350.jpg\'>');"; onMouseout="hideddrivetip();">
+				</a>
+            </td>
+            <!--</tr>            
+            <tr>-->
+            <td class="smallimg"  align="center" valign="middle">
+				<a href="mailto:publications@tirwin.in?CC=govind@tirwin.in&subject=Regarding%20Infectious%20Substances%20Shipping%20Guidelines">
+					<img class="bimg" src="Images/ISSG2010_140_200.jpg" onMouseover="ddrivetip('<img src=\'Images/ISSG2010_300_350.jpg\'/>');"; onMouseout="hideddrivetip()">
+				</a>
+			</td><td class="smallimg"  align="center" valign="middle">
+				<a href="mailto:publications@tirwin.in?CC=govind@tirwin.in&subject=Regarding%20Live%20Animals%20Regulations">
+					<img class="bimg" src="Images/lar2011_140_200.jpg" onMouseover="ddrivetip('<img src=\'Images/lar2011_300_350.jpg\'/>');"; onMouseout="hideddrivetip()">
+				</a>
+			</td><td class="smallimg"  align="center" valign="middle">
+				<a href="mailto:publications@tirwin.in?CC=govind@tirwin.in&subject=Regarding%20Perishable%20Cargo">
+					<img class="bimg" src="Images/pcr2010_140_200.jpg" onMouseover="ddrivetip('<img src=\'Images/pcr2010_300_350.jpg\'/>');"; onMouseout="hideddrivetip()">
+				</a>
+			</td>
+			</tr>
+			<tr>
+				<td class="smallimg"  align="center" valign="middle">
+					<a href="mailto:publications@tirwin.in?CC=govind@tirwin.in&subject=Regarding%20Airport%20Handling%20Manual">
+						<img class="bimg" src="Images/ahm2011_140_200.jpg" onMouseover="ddrivetip('<img src=\'Images/ahm2011_300_350.jpg\'/>');"; onMouseout="hideddrivetip()">
+					</a>
+				</td>
+				<td class="smallimg"  align="center" valign="middle">
+					Other Publications
+					<a href="mailto:publications@tirwin.in?CC=govind@tirwin.in&subject=Regarding%20Air%20International%20Regulations">
+						<img class="bimg" src="Images/air2011_140_200.jpg" onMouseover="ddrivetip('<img src=\'Images/air2011_300_350.jpg\'/>');"; onMouseout="hideddrivetip()" style="height: 186px;">
+					</a>
+				</td>
+				<td class="smallimg"  align="center" valign="middle"></td>
+				<td class="smallimg"  align="center" valign="middle"></td>
+				<td class="smallimg"  align="center" valign="middle"></td>
+			</tr>
+			</table>
+          <!--<br />-->
+          <br /><br />
+        <div class="clear br"></div>
+      </div>
+      
+      <script type="text/javascript"> 
+  $(".pages_inner").idTabs(function(id,list,set){ 
+	$("a",set).removeClass("selected") 
+	.filter("[@href='"+id+"']",set).addClass("selected"); 
+	for(i in list) 
+	  $(list[i]).hide(); 
+	$(id).fadeIn(); 
+	return false; 
+  }); 
+</script>
+    </div>
+  </div></div>
+	<div class="clear"></div>
+    </div>
+
+<div id="footer"> <a href="index.html" title="Home">Home</a> | <a href="about.html" title="About Us">About 
+  Us</a> | <a href="services.html" title="Services">Services</a> | <a href="#" title="#">Members</a> 
+  | <a href="contact.html" title="Contact Us">Contact Us</a> <span class="copy"> 
+  Copyright © 2014 - 2015 tirwin.in</span> </div>
+	</body></html>

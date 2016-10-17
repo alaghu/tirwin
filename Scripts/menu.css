@@ -1,0 +1,12 @@
+.nav {position: absolute;height: 78px;width: 600px;margin:8px 0;overflow: hidden;}
+.nav li {float: right;list-style: none;}
+.nav li.back {background: url("../Images/hover.png") no-repeat right top;height: 50px;z-index: 8;position: absolute;}
+.nav li.back .left {background: url("../Images/hover.png") no-repeat left top;height: 50px;margin-right:15px;}
+.nav li a {	z-index: 10;position: relative;overflow: hidden;float:left;}
+.nav li a:hover, .nav li a:active, .nav li a:visited {border: none;}
+#nav {height:78px;width:400px;position:relative; font-size:11px;z-index:500;padding-top:18px;margin:0 0 0 400px;}
+#nav li {float:left;margin:0 2px 0 2px;}
+#nav a {height:15px;display:block;text-transform:uppercase;font-size:12px;font-weight:bold;color:#E02320;padding:12px 13px 15px 16px;}
+#nav a:hover {color:#E02320;}
+#nav a span {color:#7BA2EB;display:block;font-size:10px;}
+#nav a span:hover {color:#7BA2EB;display:block;font-size:10px;}
